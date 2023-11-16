@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  inherit (pkgs) stdenv appimageTools fetchurl gtk3 gsettings-desktop-schemas;
+  inherit (pkgs) lib appimageTools fetchurl gtk3 gsettings-desktop-schemas;
   version = "0.9.22";
   pname = "obsidian";
   name = "${pname}-${version}";
@@ -28,7 +28,7 @@ in appimageTools.wrapType2 rec {
     substituteInPlace $out/share/applications/obsidian.desktop --replace 'Exec=AppRun' 'Exec=${pname}'
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Obsidian.md appImage";
     longDescription = ''
        The latest build of https://Obsidian.md, in appImage form, suitably nixed
